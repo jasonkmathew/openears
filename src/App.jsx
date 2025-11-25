@@ -5,9 +5,12 @@ import Footer from './components/Footer';
 import Home from './pages/Home';
 import Demo from './pages/Demo';
 
+import ScrollToTop from './components/ScrollToTop';
+
 function App() {
   return (
     <Router>
+      <ScrollToTop />
       <div className="app">
         <Header />
         <main>
