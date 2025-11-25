@@ -45,23 +45,28 @@ const WaitlistModal = ({ isOpen, onClose }) => {
     };
 
     return (
-        <div className="modal-overlay">
-            <div className="modal-content">
+        <div className="modal-overlay" onClick={onClose}>
+            <div className="modal-content" onClick={e => e.stopPropagation()}>
                 <button className="modal-close" onClick={onClose} aria-label="Close modal">
                     <X size={24} />
                 </button>
 
                 {isSuccess ? (
                     <div className="success-message">
-                        <CheckCircle size={64} className="success-icon" />
+                        <div className="success-icon-wrapper">
+                            <CheckCircle size={48} />
+                        </div>
                         <h3>You're on the list!</h3>
                         <p>Thanks for joining the OpenEars waitlist. We'll be in touch soon.</p>
-                        <button className="btn btn-primary" onClick={onClose}>Close</button>
+                        <button className="btn btn-primary btn-full" onClick={onClose}>Close</button>
                     </div>
                 ) : (
                     <>
-                        <h2 className="modal-title">Join the Waitlist</h2>
-                        <p className="modal-subtitle">Be the first to know when OpenEars launches on campus.</p>
+                        <div className="modal-header">
+                            <img src="/logo.png" alt="OpenEars" className="modal-logo" />
+                            <h2 className="modal-title">Join the Waitlist</h2>
+                            <p className="modal-subtitle">Be the first to know when OpenEars launches on campus.</p>
+                        </div>
 
                         <form onSubmit={handleSubmit} className="waitlist-form">
                             <div className="form-row">
@@ -75,6 +80,7 @@ const WaitlistModal = ({ isOpen, onClose }) => {
                                         onChange={handleChange}
                                         required
                                         placeholder="Rocky"
+                                        className="form-input"
                                     />
                                 </div>
                                 <div className="form-group">
@@ -87,6 +93,7 @@ const WaitlistModal = ({ isOpen, onClose }) => {
                                         onChange={handleChange}
                                         required
                                         placeholder="Bull"
+                                        className="form-input"
                                     />
                                 </div>
                             </div>
@@ -103,6 +110,7 @@ const WaitlistModal = ({ isOpen, onClose }) => {
                                     placeholder="rocky@usf.edu"
                                     pattern=".+@usf\.edu"
                                     title="Please enter a valid USF email address ending in @usf.edu"
+                                    className="form-input"
                                 />
                             </div>
 
@@ -115,12 +123,13 @@ const WaitlistModal = ({ isOpen, onClose }) => {
                                     onChange={handleChange}
                                     placeholder="Tell us how we can help..."
                                     rows="3"
+                                    className="form-input"
                                 ></textarea>
                             </div>
 
                             {error && <p className="error-message">{error}</p>}
 
-                            <button type="submit" className="btn btn-primary btn-block" disabled={isSubmitting}>
+                            <button type="submit" className="btn btn-primary btn-full" disabled={isSubmitting}>
                                 {isSubmitting ? (
                                     <>
                                         <Loader2 size={18} className="animate-spin" /> Joining...
@@ -141,65 +150,89 @@ const WaitlistModal = ({ isOpen, onClose }) => {
                     left: 0;
                     right: 0;
                     bottom: 0;
-                    background-color: rgba(0, 0, 0, 0.5);
+                    background-color: rgba(31, 41, 55, 0.7);
                     display: flex;
                     align-items: center;
                     justify-content: center;
                     z-index: 2000;
-                    backdrop-filter: blur(4px);
+                    backdrop-filter: blur(8px);
                     padding: 1rem;
+                    animation: fadeIn 0.2s ease-out;
                 }
 
                 .modal-content {
                     background-color: white;
                     border-radius: 1.5rem;
-                    padding: 2.5rem;
+                    padding: 3rem;
                     width: 100%;
-                    max-width: 500px;
+                    max-width: 480px;
                     position: relative;
-                    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-                    animation: modalSlideIn 0.3s ease-out;
+                    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+                    animation: slideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
                 }
 
-                @keyframes modalSlideIn {
-                    from { transform: translateY(20px); opacity: 0; }
-                    to { transform: translateY(0); opacity: 1; }
+                @keyframes fadeIn {
+                    from { opacity: 0; }
+                    to { opacity: 1; }
+                }
+
+                @keyframes slideUp {
+                    from { transform: translateY(20px) scale(0.95); opacity: 0; }
+                    to { transform: translateY(0) scale(1); opacity: 1; }
                 }
 
                 .modal-close {
                     position: absolute;
                     top: 1.5rem;
                     right: 1.5rem;
-                    background: none;
+                    background: #F3F4F6;
                     border: none;
-                    color: #9CA3AF;
+                    color: #6B7280;
                     cursor: pointer;
-                    transition: color 0.2s;
-                    padding: 0.25rem;
+                    transition: all 0.2s;
+                    padding: 0.5rem;
+                    border-radius: 50%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
                 }
 
                 .modal-close:hover {
+                    background-color: #E5E7EB;
                     color: #1F2937;
+                    transform: rotate(90deg);
+                }
+
+                .modal-header {
+                    text-align: center;
+                    margin-bottom: 2rem;
+                }
+
+                .modal-logo {
+                    width: 48px;
+                    height: 48px;
+                    object-fit: contain;
+                    margin-bottom: 1rem;
                 }
 
                 .modal-title {
-                    font-size: 1.75rem;
-                    font-weight: 700;
+                    font-size: 1.875rem;
+                    font-weight: 800;
                     color: #1F2937;
                     margin-bottom: 0.5rem;
-                    text-align: center;
+                    letter-spacing: -0.025em;
                 }
 
                 .modal-subtitle {
                     color: #6B7280;
-                    text-align: center;
-                    margin-bottom: 2rem;
+                    font-size: 1rem;
+                    line-height: 1.5;
                 }
 
                 .waitlist-form {
                     display: flex;
                     flex-direction: column;
-                    gap: 1.25rem;
+                    gap: 1.5rem;
                 }
 
                 .form-row {
@@ -216,29 +249,37 @@ const WaitlistModal = ({ isOpen, onClose }) => {
 
                 .form-group label {
                     font-size: 0.875rem;
-                    font-weight: 500;
+                    font-weight: 600;
                     color: #374151;
+                    margin-left: 0.25rem;
                 }
 
-                .form-group input,
-                .form-group textarea {
-                    padding: 0.75rem;
-                    border: 1px solid #D1D5DB;
-                    border-radius: 0.5rem;
+                .form-input {
+                    padding: 0.875rem 1rem;
+                    border: 2px solid #E5E7EB;
+                    border-radius: 0.75rem;
                     font-size: 1rem;
-                    transition: border-color 0.2s, box-shadow 0.2s;
+                    transition: all 0.2s;
+                    background-color: #F9FAFB;
+                    color: #1F2937;
                 }
 
-                .form-group input:focus,
-                .form-group textarea:focus {
+                .form-input:focus {
                     outline: none;
                     border-color: var(--primary);
-                    box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.1);
+                    background-color: white;
+                    box-shadow: 0 0 0 4px rgba(74, 144, 226, 0.1);
                 }
 
-                .btn-block {
+                .form-input::placeholder {
+                    color: #9CA3AF;
+                }
+
+                .btn-full {
                     width: 100%;
                     justify-content: center;
+                    padding: 1rem;
+                    font-size: 1rem;
                     margin-top: 0.5rem;
                 }
 
@@ -246,6 +287,10 @@ const WaitlistModal = ({ isOpen, onClose }) => {
                     color: #EF4444;
                     font-size: 0.875rem;
                     text-align: center;
+                    background-color: #FEF2F2;
+                    padding: 0.75rem;
+                    border-radius: 0.5rem;
+                    border: 1px solid #FECACA;
                 }
 
                 .success-message {
@@ -257,8 +302,26 @@ const WaitlistModal = ({ isOpen, onClose }) => {
                     padding: 2rem 0;
                 }
 
-                .success-icon {
+                .success-icon-wrapper {
+                    width: 80px;
+                    height: 80px;
+                    background-color: rgba(80, 227, 194, 0.1);
+                    border-radius: 50%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
                     color: var(--secondary);
+                    margin-bottom: 1rem;
+                }
+
+                .success-message h3 {
+                    font-size: 1.5rem;
+                    font-weight: 700;
+                    color: #1F2937;
+                }
+
+                .success-message p {
+                    color: #6B7280;
                     margin-bottom: 1rem;
                 }
 
@@ -273,7 +336,8 @@ const WaitlistModal = ({ isOpen, onClose }) => {
 
                 @media (max-width: 640px) {
                     .modal-content {
-                        padding: 1.5rem;
+                        padding: 2rem;
+                        margin: 1rem;
                     }
                     .form-row {
                         grid-template-columns: 1fr;
