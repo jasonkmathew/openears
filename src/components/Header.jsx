@@ -14,13 +14,29 @@ const Header = () => {
   return (
     <header className="header">
       <div className="container header-container">
-        <Link to="/" className="logo" onClick={handleLinkClick}>
+        <Link
+          to="/"
+          className="logo"
+          onClick={() => {
+            handleLinkClick();
+            window.scrollTo(0, 0);
+          }}
+        >
           <HeartHandshake className="logo-icon" size={32} />
           <span className="logo-text">OpenEars</span>
         </Link>
 
         <nav className={`nav-menu ${isMenuOpen ? 'active' : ''}`}>
-          <Link to="/" className="nav-link" onClick={handleLinkClick}>Home</Link>
+          <Link
+            to="/"
+            className="nav-link"
+            onClick={() => {
+              handleLinkClick();
+              window.scrollTo(0, 0);
+            }}
+          >
+            Home
+          </Link>
           <a href="/#features" className="nav-link" onClick={handleLinkClick}>Features</a>
           <a href="/#team" className="nav-link" onClick={handleLinkClick}>Team</a>
           <a href="/#timeline" className="nav-link" onClick={handleLinkClick}>Timeline</a>
