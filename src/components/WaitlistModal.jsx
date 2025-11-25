@@ -169,6 +169,7 @@ const WaitlistModal = ({ isOpen, onClose }) => {
                     position: relative;
                     box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
                     animation: slideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+                    box-sizing: border-box;
                 }
 
                 @keyframes fadeIn {
@@ -255,6 +256,7 @@ const WaitlistModal = ({ isOpen, onClose }) => {
                 }
 
                 .form-input {
+                    width: 100%;
                     padding: 0.875rem 1rem;
                     border: 2px solid #E5E7EB;
                     border-radius: 0.75rem;
@@ -262,6 +264,7 @@ const WaitlistModal = ({ isOpen, onClose }) => {
                     transition: all 0.2s;
                     background-color: #F9FAFB;
                     color: #1F2937;
+                    box-sizing: border-box;
                 }
 
                 .form-input:focus {
@@ -338,6 +341,7 @@ const WaitlistModal = ({ isOpen, onClose }) => {
                     .modal-content {
                         padding: 2rem;
                         margin: 1rem;
+                        max-width: calc(100% - 2rem);
                     }
                     .form-row {
                         grid-template-columns: 1fr;
