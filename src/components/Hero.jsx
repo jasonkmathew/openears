@@ -2,86 +2,86 @@ import React from 'react';
 import { ArrowRight, Shield, Users, Heart } from 'lucide-react';
 
 const Hero = () => {
-    return (
-        <section id="home" className="hero">
-            <div className="container hero-container">
-                <div className="hero-content">
-                    <div className="badge">
-                        <span className="badge-dot"></span>
-                        Coming to USF Campus
-                    </div>
-                    <h1 className="hero-title">
-                        You Are <span className="highlight">Not Alone.</span><br />
-                        We Are Here to Listen.
-                    </h1>
-                    <p className="hero-description">
-                        OpenEars is a peer-driven mobile platform designed to connect students,
-                        promote mental wellness, and reduce stigma around seeking help.
-                        Anonymous. Safe. Supportive.
-                    </p>
-                    <div className="hero-actions">
-                        <button className="btn btn-primary">
-                            Join the Waitlist <ArrowRight size={18} style={{ marginLeft: '0.5rem' }} />
-                        </button>
-                        <button className="btn btn-outline">
-                            Learn More
-                        </button>
-                    </div>
+  return (
+    <section id="home" className="hero">
+      <div className="container hero-container">
+        <div className="hero-content">
+          <div className="badge">
+            <span className="badge-dot"></span>
+            Coming to USF Campus
+          </div>
+          <h1 className="hero-title">
+            You Are <span className="highlight">Not Alone.</span><br />
+            We Are Here to Listen.
+          </h1>
+          <p className="hero-description">
+            Anonymous peer support for students. Connect, share, and find wellness together.
+            <br />
+            <strong>OpenEars</strong> connects you with peers who understand.
+          </p>
+          <div className="hero-actions">
+            <a href="/demo" className="btn btn-primary" style={{ textDecoration: 'none', display: 'inline-flex', alignItems: 'center' }}>
+              Try the Demo <ArrowRight size={18} style={{ marginLeft: '0.5rem' }} />
+            </a>
+            <button className="btn btn-outline">
+              Join the Waitlist
+            </button>
+          </div>
 
-                    <div className="hero-stats">
-                        <div className="stat-item">
-                            <Shield className="stat-icon" size={24} />
-                            <span>Anonymous & Secure</span>
-                        </div>
-                        <div className="stat-item">
-                            <Users className="stat-icon" size={24} />
-                            <span>Peer Support</span>
-                        </div>
-                        <div className="stat-item">
-                            <Heart className="stat-icon" size={24} />
-                            <span>Mental Wellness</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div className="hero-image">
-                    <div className="app-mockup">
-                        {/* Placeholder for app screenshot or illustration */}
-                        <div className="mockup-screen">
-                            <div className="mockup-header">
-                                <div className="mockup-time">9:41</div>
-                                <div className="mockup-status">
-                                    <span>5G</span>
-                                    <span>100%</span>
-                                </div>
-                            </div>
-                            <div className="mockup-content">
-                                <div className="chat-bubble received">
-                                    Hey, I've been feeling really stressed about finals lately. 😓
-                                </div>
-                                <div className="chat-bubble sent">
-                                    I totally get that. It's a tough time of year. Want to talk about it?
-                                </div>
-                                <div className="chat-bubble received">
-                                    Yeah, that would be really helpful. Thanks for listening.
-                                </div>
-                                <div className="typing-indicator">
-                                    <span></span><span></span><span></span>
-                                </div>
-                            </div>
-                            <div className="mockup-footer">
-                                <div className="input-field">Type a message...</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    {/* Decorative elements */}
-                    <div className="blob blob-1"></div>
-                    <div className="blob blob-2"></div>
-                </div>
+          <div className="hero-stats">
+            <div className="stat-item">
+              <Shield className="stat-icon" size={24} />
+              <span>Anonymous & Secure</span>
             </div>
+            <div className="stat-item">
+              <Users className="stat-icon" size={24} />
+              <span>Peer Support</span>
+            </div>
+            <div className="stat-item">
+              <Heart className="stat-icon" size={24} />
+              <span>Mental Wellness</span>
+            </div>
+          </div>
+        </div>
 
-            <style>{`
+        <div className="hero-image">
+          <div className="app-mockup">
+            {/* Placeholder for app screenshot or illustration */}
+            <div className="mockup-screen">
+              <div className="mockup-header">
+                <div className="mockup-time">9:41</div>
+                <div className="mockup-status">
+                  <span>5G</span>
+                  <span>100%</span>
+                </div>
+              </div>
+              <div className="mockup-content">
+                <div className="chat-bubble received">
+                  Hey, I've been feeling really stressed about finals lately. 😓
+                </div>
+                <div className="chat-bubble sent">
+                  I totally get that. It's a tough time of year. Want to talk about it?
+                </div>
+                <div className="chat-bubble received">
+                  Yeah, that would be really helpful. Thanks for listening.
+                </div>
+                <div className="typing-indicator">
+                  <span></span><span></span><span></span>
+                </div>
+              </div>
+              <div className="mockup-footer">
+                <div className="input-field">Type a message...</div>
+              </div>
+            </div>
+          </div>
+
+          {/* Decorative elements */}
+          <div className="blob blob-1"></div>
+          <div className="blob blob-2"></div>
+        </div>
+      </div>
+
+      <style>{`
         .hero {
           padding-top: 140px; /* Header height + spacing */
           padding-bottom: 5rem;
@@ -339,8 +339,8 @@ const Hero = () => {
           }
         }
       `}</style>
-        </section>
-    );
+    </section>
+  );
 };
 
 export default Hero;

@@ -30,7 +30,7 @@ const Header = () => {
 
         <div className="header-actions">
           <Link to="/demo" className="btn btn-primary desktop-only">Try Demo</Link>
-          <button className="menu-toggle" onClick={toggleMenu}>
+          <button className="menu-toggle" onClick={toggleMenu} aria-label="Toggle menu">
             {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
         </div>

@@ -2,68 +2,68 @@ import React from 'react';
 import { Linkedin, Github, Mail } from 'lucide-react';
 
 const teamMembers = [
-    {
-        name: "Jason Mathew",
-        role: "Project Lead / Developer",
-        responsibilities: "Oversees project direction, manages development in Flutter, integrates Firebase backend.",
-        image: "https://ui-avatars.com/api/?name=Jason+Mathew&background=4A90E2&color=fff"
-    },
-    {
-        name: "Kenn Nguyen",
-        role: "UX/UI Designer",
-        responsibilities: "Designs user interface and experience in Figma, creates wireframes and prototypes.",
-        image: "https://ui-avatars.com/api/?name=Kenn+Nguyen&background=50E3C2&color=fff"
-    },
-    {
-        name: "Ava Tran",
-        role: "Research & Outreach",
-        responsibilities: "Conducts student surveys, organizes pilot testing, manages campus outreach.",
-        image: "https://ui-avatars.com/api/?name=Ava+Tran&background=F5A623&color=fff"
-    },
-    {
-        name: "Simon Nassif",
-        role: "Technical Support / QA",
-        responsibilities: "Tests app features, documents bugs, supports Firebase integration.",
-        image: "https://ui-avatars.com/api/?name=Simon+Nassif&background=9B59B6&color=fff"
-    }
+  {
+    name: "Jason Mathew",
+    role: "Project Lead / Developer",
+    responsibilities: "Oversees project direction, manages development in Flutter, integrates Firebase backend.",
+    image: "https://ui-avatars.com/api/?name=Jason+Mathew&background=4A90E2&color=fff"
+  },
+  {
+    name: "Kenn Nguyen",
+    role: "UX/UI Designer",
+    responsibilities: "Designs user interface and experience in Figma, creates wireframes and prototypes.",
+    image: "https://ui-avatars.com/api/?name=Kenn+Nguyen&background=50E3C2&color=fff"
+  },
+  {
+    name: "Ava Tran",
+    role: "Research & Outreach",
+    responsibilities: "Conducts student surveys, organizes pilot testing, manages campus outreach.",
+    image: "https://ui-avatars.com/api/?name=Ava+Tran&background=F5A623&color=fff"
+  },
+  {
+    name: "Simon Nassif",
+    role: "Technical Support / QA",
+    responsibilities: "Tests app features, documents bugs, supports Firebase integration.",
+    image: "https://ui-avatars.com/api/?name=Simon+Nassif&background=9B59B6&color=fff"
+  }
 ];
 
 const Team = () => {
-    return (
-        <section id="team" className="section team-section">
-            <div className="container">
-                <h2 className="section-title">Meet the Team</h2>
-                <p className="section-subtitle">
-                    Passionate students working together to make a difference in mental health on campus.
-                </p>
+  return (
+    <section id="team" className="section team-section">
+      <div className="container">
+        <h2 className="section-title">Meet the Team</h2>
+        <p className="section-subtitle">
+          Passionate students working together to make a difference in mental health on campus.
+        </p>
 
-                <div className="team-grid">
-                    {teamMembers.map((member, index) => (
-                        <div key={index} className="team-card">
-                            <div className="member-image-wrapper">
-                                <img src={member.image} alt={member.name} className="member-image" />
-                            </div>
-                            <h3 className="member-name">{member.name}</h3>
-                            <p className="member-role">{member.role}</p>
-                            <p className="member-responsibilities">{member.responsibilities}</p>
+        <div className="team-grid">
+          {teamMembers.map((member, index) => (
+            <div key={index} className="team-card">
+              <div className="member-image-wrapper">
+                <img src={member.image} alt={member.name} className="member-image" />
+              </div>
+              <h3 className="member-name">{member.name}</h3>
+              <p className="member-role">{member.role}</p>
+              <p className="member-responsibilities">{member.responsibilities}</p>
 
-                            <div className="member-socials">
-                                <a href="#" className="social-link"><Github size={18} /></a>
-                                <a href="#" className="social-link"><Linkedin size={18} /></a>
-                                <a href="#" className="social-link"><Mail size={18} /></a>
-                            </div>
-                        </div>
-                    ))}
-                </div>
-
-                <div className="advisor-section">
-                    <p className="advisor-text">
-                        <strong>Faculty Advisor:</strong> TBD (USF Faculty Mentor)
-                    </p>
-                </div>
+              <div className="member-socials">
+                <a href="#" className="social-link" aria-label="Github"><Github size={18} /></a>
+                <a href="#" className="social-link" aria-label="LinkedIn"><Linkedin size={18} /></a>
+                <a href="#" className="social-link" aria-label="Email"><Mail size={18} /></a>
+              </div>
             </div>
+          ))}
+        </div>
 
-            <style>{`
+        <div className="advisor-section">
+          <p className="advisor-text">
+            <strong>Faculty Advisor:</strong> TBD (USF Faculty Mentor)
+          </p>
+        </div>
+      </div>
+
+      <style>{`
         .team-section {
           background-color: var(--background);
         }
@@ -154,8 +154,8 @@ const Team = () => {
           color: var(--text-main);
         }
       `}</style>
-        </section>
-    );
+    </section>
+  );
 };
 
 export default Team;
