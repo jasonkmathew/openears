@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { ArrowRight, Shield, Users, Heart } from 'lucide-react';
+import WaitlistModal from './WaitlistModal';
 
 const Hero = () => {
+  const [isWaitlistOpen, setIsWaitlistOpen] = useState(false);
+
   return (
     <section id="home" className="hero">
       <div className="container hero-container">
@@ -20,11 +23,11 @@ const Hero = () => {
             <strong>OpenEars</strong> connects you with peers who understand.
           </p>
           <div className="hero-actions">
-            <a href="/demo" className="btn btn-primary" style={{ textDecoration: 'none', display: 'inline-flex', alignItems: 'center' }}>
-              Try the Demo <ArrowRight size={18} style={{ marginLeft: '0.5rem' }} />
-            </a>
-            <button className="btn btn-outline">
-              Join the Waitlist
+            <button
+              className="btn btn-primary"
+              onClick={() => setIsWaitlistOpen(true)}
+            >
+              Join the Waitlist <ArrowRight size={18} style={{ marginLeft: '0.5rem' }} />
             </button>
           </div>
 
@@ -80,6 +83,8 @@ const Hero = () => {
           <div className="blob blob-2"></div>
         </div>
       </div>
+
+      <WaitlistModal isOpen={isWaitlistOpen} onClose={() => setIsWaitlistOpen(false)} />
 
       <style>{`
         .hero {
