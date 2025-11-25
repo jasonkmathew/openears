@@ -22,7 +22,7 @@ const Header = () => {
             window.scrollTo(0, 0);
           }}
         >
-          <HeartHandshake className="logo-icon" size={32} />
+          <img src="/logo.png" alt="OpenEars Logo" className="logo-image" style={{ width: '32px', height: '32px', objectFit: 'contain' }} />
           <span className="logo-text">OpenEars</span>
         </Link>
 
