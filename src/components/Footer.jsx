@@ -1,6 +1,23 @@
 import React from 'react';
 import { HeartHandshake, Github, Twitter, Instagram } from 'lucide-react';
 import { Link } from 'react-router-dom';
+
+const Footer = () => {
+  return (
+    <footer className="footer">
+      <div className="container">
+        <div className="footer-content">
+          <div className="footer-brand">
+            <div className="logo">
+              <img src="/logo.png" alt="OpenEars Logo" className="logo-image" style={{ width: '24px', height: '24px', objectFit: 'contain' }} />
+              <span className="logo-text">OpenEars</span>
+            </div>
+            <p className="footer-description">
+              Connecting students for a healthier, more supportive campus community.
+            </p>
+          </div>
+
+          <div className="footer-links">
             <h4 className="footer-heading">Quick Links</h4>
             <ul>
               <li><Link to="/">Home</Link></li>
@@ -8,7 +25,7 @@ import { Link } from 'react-router-dom';
               <li><a href="/#team">Team</a></li>
               <li><a href="/#timeline">Roadmap</a></li>
             </ul>
-          </div >
+          </div>
 
           <div className="footer-links">
             <h4 className="footer-heading">Resources</h4>
@@ -28,17 +45,17 @@ import { Link } from 'react-router-dom';
               <a href="#" className="social-icon" aria-label="Instagram"><Instagram size={20} /></a>
             </div>
           </div>
-        </div >
+        </div>
 
-  <div className="footer-bottom">
-    <p>&copy; {new Date().getFullYear()} OpenEars. All rights reserved.</p>
-    <p className="footer-credit">
-      Developed by USF Students | Faculty Advisor: TBD | v0.1.0
-    </p>
-  </div>
-      </div >
+        <div className="footer-bottom">
+          <p>&copy; {new Date().getFullYear()} OpenEars. All rights reserved.</p>
+          <p className="footer-credit">
+            Developed by USF Students | Faculty Advisor: TBD | v0.1.0
+          </p>
+        </div>
+      </div>
 
-  <style>{`
+      <style>{`
         .footer {
           background-color: #1F2937;
           color: white;
@@ -129,7 +146,7 @@ import { Link } from 'react-router-dom';
           }
         }
       `}</style>
-    </footer >
+    </footer>
   );
 };
 
