@@ -6,7 +6,12 @@ const teamMembers = [
     name: "Jason Mathew",
     role: "Project Lead / Developer",
     responsibilities: "Oversees project direction, manages development in Flutter, integrates Firebase backend.",
-    image: "https://ui-avatars.com/api/?name=Jason+Mathew&background=4A90E2&color=fff"
+    image: "https://ui-avatars.com/api/?name=Jason+Mathew&background=4A90E2&color=fff",
+    socials: {
+      github: "https://github.com/jasonkmathew",
+      linkedin: "https://www.linkedin.com/in/jasonkmathew/",
+      email: "jasonkmathewbusiness@gmail.com"
+    }
   },
   {
     name: "Kenn Nguyen",
@@ -48,9 +53,21 @@ const Team = () => {
               <p className="member-responsibilities">{member.responsibilities}</p>
 
               <div className="member-socials">
-                <a href="#" className="social-link" aria-label="Github"><Github size={18} /></a>
-                <a href="#" className="social-link" aria-label="LinkedIn"><Linkedin size={18} /></a>
-                <a href="#" className="social-link" aria-label="Email"><Mail size={18} /></a>
+                {member.socials?.github && (
+                  <a href={member.socials.github} target="_blank" rel="noopener noreferrer" className="social-link" aria-label="Github">
+                    <Github size={18} />
+                  </a>
+                )}
+                {member.socials?.linkedin && (
+                  <a href={member.socials.linkedin} target="_blank" rel="noopener noreferrer" className="social-link" aria-label="LinkedIn">
+                    <Linkedin size={18} />
+                  </a>
+                )}
+                {member.socials?.email && (
+                  <a href={`mailto:${member.socials.email}`} className="social-link" aria-label="Email">
+                    <Mail size={18} />
+                  </a>
+                )}
               </div>
             </div>
           ))}
