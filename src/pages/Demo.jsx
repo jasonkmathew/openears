@@ -1,61 +1,69 @@
 import React, { useState } from 'react';
-import { MessageCircle, BookOpen, Smile, Users, Send, Search, Heart, ThumbsUp } from 'lucide-react';
+import { MessageCircle, BookOpen, Smile, Users, Send, Search, Heart, ThumbsUp, Bot } from 'lucide-react';
 
 const Demo = () => {
-    const [activeTab, setActiveTab] = useState('chat');
+  const [activeTab, setActiveTab] = useState('chat');
 
-    return (
-        <div className="demo-page">
-            <div className="container">
-                <div className="demo-header">
-                    <h1 className="demo-title">Experience OpenEars</h1>
-                    <p className="demo-subtitle">
-                        Try out our interactive prototype to see how students can connect, share, and support each other.
-                    </p>
-                </div>
+  return (
+    <div className="demo-page">
+      <div className="container">
+        <div className="demo-header">
+          <h1 className="demo-title">Experience OpenEars</h1>
+          <p className="demo-subtitle">
+            Try out our interactive prototype to see how students can connect, share, and support each other.
+          </p>
+        </div>
 
-                <div className="demo-interface">
-                    <div className="demo-tabs">
-                        <button
-                            className={`demo-tab ${activeTab === 'chat' ? 'active' : ''}`}
-                            onClick={() => setActiveTab('chat')}
-                        >
-                            <MessageCircle size={20} />
-                            <span>Peer Chat</span>
-                        </button>
-                        <button
-                            className={`demo-tab ${activeTab === 'resources' ? 'active' : ''}`}
-                            onClick={() => setActiveTab('resources')}
-                        >
-                            <BookOpen size={20} />
-                            <span>Resources</span>
-                        </button>
-                        <button
-                            className={`demo-tab ${activeTab === 'mood' ? 'active' : ''}`}
-                            onClick={() => setActiveTab('mood')}
-                        >
-                            <Smile size={20} />
-                            <span>Mood Tracker</span>
-                        </button>
-                        <button
-                            className={`demo-tab ${activeTab === 'forum' ? 'active' : ''}`}
-                            onClick={() => setActiveTab('forum')}
-                        >
-                            <Users size={20} />
-                            <span>Community</span>
-                        </button>
-                    </div>
+        <div className="demo-interface">
+          <div className="demo-tabs">
+            <button
+              className={`demo-tab ${activeTab === 'chat' ? 'active' : ''}`}
+              onClick={() => setActiveTab('chat')}
+            >
+              <MessageCircle size={20} />
+              <span>Peer Chat</span>
+            </button>
+            <button
+              className={`demo-tab ${activeTab === 'resources' ? 'active' : ''}`}
+              onClick={() => setActiveTab('resources')}
+            >
+              <BookOpen size={20} />
+              <span>Resources</span>
+            </button>
+            <button
+              className={`demo-tab ${activeTab === 'mood' ? 'active' : ''}`}
+              onClick={() => setActiveTab('mood')}
+            >
+              <Smile size={20} />
+              <span>Mood Tracker</span>
+            </button>
+            <button
+              className={`demo-tab ${activeTab === 'forum' ? 'active' : ''}`}
+              onClick={() => setActiveTab('forum')}
+            >
+              <Users size={20} />
+              <span>Community</span>
+            </button>
+            <button
+              className={`demo-tab ${activeTab === 'ai-assistant' ? 'active' : ''}`}
+              onClick={() => setActiveTab('ai-assistant')}
+            >
+              <Bot size={20} />
+              <span>AI Assistant</span>
+            </button>
+          </div>
 
-                    <div className="demo-content">
-                        {activeTab === 'chat' && <ChatDemo />}
-                        {activeTab === 'resources' && <ResourcesDemo />}
-                        {activeTab === 'mood' && <MoodDemo />}
-                        {activeTab === 'forum' && <ForumDemo />}
-                    </div>
-                </div>
-            </div>
+          <div className="demo-content">
+            {activeTab === 'chat' && <ChatDemo />}
+            {activeTab === 'resources' && <ResourcesDemo />}
+            {activeTab === 'mood' && <MoodDemo />}
+            {activeTab === 'forum' && <ForumDemo />}
+            {activeTab === 'ai-assistant' && <AiAssistantDemo />}
+          </div>
+        </div>
+      </div>
 
-            <style>{`
+      <style>{`
         .demo-page {
           padding-top: 100px;
           padding-bottom: 5rem;
@@ -479,195 +487,207 @@ const Demo = () => {
           }
         }
       `}</style>
-        </div>
-    );
+    </div>
+  );
 };
 
 const ChatDemo = () => {
-    const [messages, setMessages] = useState([
-        { id: 1, text: "Hi there! I've been feeling really overwhelmed with finals coming up.", sender: 'received', time: '10:30 AM' },
-        { id: 2, text: "I completely understand. It's a super stressful time for everyone. Have you been taking any breaks?", sender: 'sent', time: '10:32 AM' },
-        { id: 3, text: "Not really, I feel guilty when I'm not studying. But I'm so tired.", sender: 'received', time: '10:33 AM' },
-    ]);
-    const [input, setInput] = useState('');
+  const [messages, setMessages] = useState([
+    { id: 1, text: "Hi there! I've been feeling really overwhelmed with finals coming up.", sender: 'received', time: '10:30 AM' },
+    { id: 2, text: "I completely understand. It's a super stressful time for everyone. Have you been taking any breaks?", sender: 'sent', time: '10:32 AM' },
+    { id: 3, text: "Not really, I feel guilty when I'm not studying. But I'm so tired.", sender: 'received', time: '10:33 AM' },
+  ]);
+  const [input, setInput] = useState('');
 
-    const handleSend = () => {
-        if (!input.trim()) return;
-        setMessages([...messages, { id: Date.now(), text: input, sender: 'sent', time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) }]);
-        setInput('');
+  const handleSend = () => {
+    if (!input.trim()) return;
+    setMessages([...messages, { id: Date.now(), text: input, sender: 'sent', time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) }]);
+    setInput('');
 
-        // Simulate reply
-        setTimeout(() => {
-            setMessages(prev => [...prev, { id: Date.now(), text: "It's important to rest too! Your brain needs downtime to process information. Maybe try a 15 min walk?", sender: 'received', time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) }]);
-        }, 2000);
-    };
+    // Simulate reply
+    setTimeout(() => {
+      setMessages(prev => [...prev, { id: Date.now(), text: "It's important to rest too! Your brain needs downtime to process information. Maybe try a 15 min walk?", sender: 'received', time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) }]);
+    }, 2000);
+  };
 
-    return (
-        <div className="chat-container">
-            <div className="chat-messages">
-                <div className="message received">
-                    <div className="message-bubble">
-                        Welcome to OpenEars Peer Chat! You are now connected with a peer supporter. This chat is anonymous and confidential.
-                    </div>
-                    <div className="message-time">System • 10:29 AM</div>
-                </div>
-                {messages.map(msg => (
-                    <div key={msg.id} className={`message ${msg.sender}`}>
-                        <div className="message-bubble">{msg.text}</div>
-                        <div className="message-time">{msg.time}</div>
-                    </div>
-                ))}
-            </div>
-            <div className="chat-input-area">
-                <input
-                    type="text"
-                    className="chat-input"
-                    placeholder="Type a message..."
-                    value={input}
-                    onChange={(e) => setInput(e.target.value)}
-                    onKeyPress={(e) => e.key === 'Enter' && handleSend()}
-                />
-                <button className="send-btn" onClick={handleSend}>
-                    <Send size={20} />
-                </button>
-            </div>
+  return (
+    <div className="chat-container">
+      <div className="chat-messages">
+        <div className="message received">
+          <div className="message-bubble">
+            Welcome to OpenEars Peer Chat! You are now connected with a peer supporter. This chat is anonymous and confidential.
+          </div>
+          <div className="message-time">System • 10:29 AM</div>
         </div>
-    );
+        {messages.map(msg => (
+          <div key={msg.id} className={`message ${msg.sender}`}>
+            <div className="message-bubble">{msg.text}</div>
+            <div className="message-time">{msg.time}</div>
+          </div>
+        ))}
+      </div>
+      <div className="chat-input-area">
+        <input
+          type="text"
+          className="chat-input"
+          placeholder="Type a message..."
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
+          onKeyPress={(e) => e.key === 'Enter' && handleSend()}
+        />
+        <button className="send-btn" onClick={handleSend}>
+          <Send size={20} />
+        </button>
+      </div>
+    </div>
+  );
 };
 
 const ResourcesDemo = () => {
-    return (
-        <div className="resources-container">
-            <div className="resources-search">
-                <Search className="search-icon" size={20} />
-                <input type="text" className="search-input" placeholder="Search for resources, articles, or services..." />
-            </div>
+  return (
+    <div className="resources-container">
+      <div className="resources-search">
+        <Search className="search-icon" size={20} />
+        <input type="text" className="search-input" placeholder="Search for resources, articles, or services..." />
+      </div>
 
-            <div className="resource-grid">
-                <div className="resource-card">
-                    <span className="resource-tag">Campus Service</span>
-                    <h3 className="resource-title">USF Counseling Center</h3>
-                    <p className="resource-desc">Professional counseling services available to all registered students. Walk-ins welcome.</p>
-                    <span className="resource-link">View Details →</span>
-                </div>
-                <div className="resource-card">
-                    <span className="resource-tag">Article</span>
-                    <h3 className="resource-title">Managing Exam Anxiety</h3>
-                    <p className="resource-desc">5 practical tips to stay calm and focused during finals week.</p>
-                    <span className="resource-link">Read Article →</span>
-                </div>
-                <div className="resource-card">
-                    <span className="resource-tag">Hotline</span>
-                    <h3 className="resource-title">24/7 Crisis Support</h3>
-                    <p className="resource-desc">Immediate help for urgent mental health crises. Available anytime.</p>
-                    <span className="resource-link">Get Help Now →</span>
-                </div>
-                <div className="resource-card">
-                    <span className="resource-tag">Wellness</span>
-                    <h3 className="resource-title">Mindfulness Workshop</h3>
-                    <p className="resource-desc">Weekly group sessions at the Student Center every Tuesday.</p>
-                    <span className="resource-link">Register →</span>
-                </div>
-            </div>
+      <div className="resource-grid">
+        <div className="resource-card">
+          <span className="resource-tag">Campus Service</span>
+          <h3 className="resource-title">USF Counseling Center</h3>
+          <p className="resource-desc">Professional counseling services available to all registered students. Walk-ins welcome.</p>
+          <span className="resource-link">View Details →</span>
         </div>
-    );
+        <div className="resource-card">
+          <span className="resource-tag">Article</span>
+          <h3 className="resource-title">Managing Exam Anxiety</h3>
+          <p className="resource-desc">5 practical tips to stay calm and focused during finals week.</p>
+          <span className="resource-link">Read Article →</span>
+        </div>
+        <div className="resource-card">
+          <span className="resource-tag">Hotline</span>
+          <h3 className="resource-title">24/7 Crisis Support</h3>
+          <p className="resource-desc">Immediate help for urgent mental health crises. Available anytime.</p>
+          <span className="resource-link">Get Help Now →</span>
+        </div>
+        <div className="resource-card">
+          <span className="resource-tag">Wellness</span>
+          <h3 className="resource-title">Mindfulness Workshop</h3>
+          <p className="resource-desc">Weekly group sessions at the Student Center every Tuesday.</p>
+          <span className="resource-link">Register →</span>
+        </div>
+      </div>
+    </div>
+  );
 };
 
 const MoodDemo = () => {
-    const [selectedMood, setSelectedMood] = useState(null);
+  const [selectedMood, setSelectedMood] = useState(null);
 
-    return (
-        <div className="mood-container">
-            <h2 className="mood-question">How are you feeling today?</h2>
+  return (
+    <div className="mood-container">
+      <h2 className="mood-question">How are you feeling today?</h2>
 
-            <div className="mood-selector">
-                {['Great', 'Good', 'Okay', 'Bad', 'Awful'].map((mood, i) => (
-                    <button
-                        key={mood}
-                        className={`mood-option ${selectedMood === mood ? 'selected' : ''}`}
-                        onClick={() => setSelectedMood(mood)}
-                    >
-                        <span className="mood-emoji">{['😄', '🙂', '😐', '😔', '😫'][i]}</span>
-                        <span className="mood-label">{mood}</span>
-                    </button>
-                ))}
-            </div>
+      <div className="mood-selector">
+        {['Great', 'Good', 'Okay', 'Bad', 'Awful'].map((mood, i) => (
+          <button
+            key={mood}
+            className={`mood-option ${selectedMood === mood ? 'selected' : ''}`}
+            onClick={() => setSelectedMood(mood)}
+          >
+            <span className="mood-emoji">{['😄', '🙂', '😐', '😔', '😫'][i]}</span>
+            <span className="mood-label">{mood}</span>
+          </button>
+        ))}
+      </div>
 
-            <div className="mood-chart-placeholder">
-                <h3 className="chart-title">Weekly Mood Trends</h3>
-                <div className="chart-bars">
-                    <div className="chart-bar" style={{ height: '60%' }}></div>
-                    <div className="chart-bar" style={{ height: '80%' }}></div>
-                    <div className="chart-bar" style={{ height: '40%' }}></div>
-                    <div className="chart-bar" style={{ height: '50%' }}></div>
-                    <div className="chart-bar" style={{ height: '70%' }}></div>
-                    <div className="chart-bar" style={{ height: '90%' }}></div>
-                    <div className="chart-bar" style={{ height: '65%' }}></div>
-                </div>
-                <div className="chart-labels">
-                    <span>Mon</span>
-                    <span>Tue</span>
-                    <span>Wed</span>
-                    <span>Thu</span>
-                    <span>Fri</span>
-                    <span>Sat</span>
-                    <span>Sun</span>
-                </div>
-            </div>
+      <div className="mood-chart-placeholder">
+        <h3 className="chart-title">Weekly Mood Trends</h3>
+        <div className="chart-bars">
+          <div className="chart-bar" style={{ height: '60%' }}></div>
+          <div className="chart-bar" style={{ height: '80%' }}></div>
+          <div className="chart-bar" style={{ height: '40%' }}></div>
+          <div className="chart-bar" style={{ height: '50%' }}></div>
+          <div className="chart-bar" style={{ height: '70%' }}></div>
+          <div className="chart-bar" style={{ height: '90%' }}></div>
+          <div className="chart-bar" style={{ height: '65%' }}></div>
         </div>
-    );
+        <div className="chart-labels">
+          <span>Mon</span>
+          <span>Tue</span>
+          <span>Wed</span>
+          <span>Thu</span>
+          <span>Fri</span>
+          <span>Sat</span>
+          <span>Sun</span>
+        </div>
+      </div>
+    </div>
+  );
 };
 
 const ForumDemo = () => {
-    return (
-        <div className="forum-container">
-            <div className="forum-header">
-                <h3>Recent Discussions</h3>
-                <button className="btn btn-primary" style={{ fontSize: '0.875rem', padding: '0.5rem 1rem' }}>New Post</button>
-            </div>
+  return (
+    <div className="forum-container">
+      <div className="forum-header">
+        <h3>Recent Discussions</h3>
+        <button className="btn btn-primary" style={{ fontSize: '0.875rem', padding: '0.5rem 1rem' }}>New Post</button>
+      </div>
 
-            <div className="forum-list">
-                <div className="forum-item">
-                    <div className="forum-meta">
-                        <span className="forum-tag">Academic Stress</span>
-                        <span>• Posted 2 hours ago</span>
-                    </div>
-                    <h4 className="forum-title">Anyone else feeling burned out?</h4>
-                    <p className="forum-preview">I've been studying non-stop for 3 days and I feel like nothing is sticking anymore. How do you guys deal with this?</p>
-                    <div className="forum-stats">
-                        <span className="stat"><Heart size={16} /> 24</span>
-                        <span className="stat"><MessageCircle size={16} /> 12 comments</span>
-                    </div>
-                </div>
-
-                <div className="forum-item">
-                    <div className="forum-meta">
-                        <span className="forum-tag">Social Anxiety</span>
-                        <span>• Posted 5 hours ago</span>
-                    </div>
-                    <h4 className="forum-title">Tips for making friends as a transfer student</h4>
-                    <p className="forum-preview">Just moved here and finding it hard to break into existing friend groups. Any advice?</p>
-                    <div className="forum-stats">
-                        <span className="stat"><Heart size={16} /> 45</span>
-                        <span className="stat"><MessageCircle size={16} /> 18 comments</span>
-                    </div>
-                </div>
-
-                <div className="forum-item">
-                    <div className="forum-meta">
-                        <span className="forum-tag">Wellness</span>
-                        <span>• Posted 1 day ago</span>
-                    </div>
-                    <h4 className="forum-title">Best quiet spots on campus?</h4>
-                    <p className="forum-preview">Looking for somewhere peaceful to meditate or just decompress between classes.</p>
-                    <div className="forum-stats">
-                        <span className="stat"><Heart size={16} /> 32</span>
-                        <span className="stat"><MessageCircle size={16} /> 8 comments</span>
-                    </div>
-                </div>
-            </div>
+      <div className="forum-list">
+        <div className="forum-item">
+          <div className="forum-meta">
+            <span className="forum-tag">Academic Stress</span>
+            <span>• Posted 2 hours ago</span>
+          </div>
+          <h4 className="forum-title">Anyone else feeling burned out?</h4>
+          <p className="forum-preview">I've been studying non-stop for 3 days and I feel like nothing is sticking anymore. How do you guys deal with this?</p>
+          <div className="forum-stats">
+            <span className="stat"><Heart size={16} /> 24</span>
+            <span className="stat"><MessageCircle size={16} /> 12 comments</span>
+          </div>
         </div>
-    );
+
+        <div className="forum-item">
+          <div className="forum-meta">
+            <span className="forum-tag">Social Anxiety</span>
+            <span>• Posted 5 hours ago</span>
+          </div>
+          <h4 className="forum-title">Tips for making friends as a transfer student</h4>
+          <p className="forum-preview">Just moved here and finding it hard to break into existing friend groups. Any advice?</p>
+          <div className="forum-stats">
+            <span className="stat"><Heart size={16} /> 45</span>
+            <span className="stat"><MessageCircle size={16} /> 18 comments</span>
+          </div>
+        </div>
+
+        <div className="forum-item">
+          <div className="forum-meta">
+            <span className="forum-tag">Wellness</span>
+            <span>• Posted 1 day ago</span>
+          </div>
+          <h4 className="forum-title">Best quiet spots on campus?</h4>
+          <p className="forum-preview">Looking for somewhere peaceful to meditate or just decompress between classes.</p>
+          <div className="forum-stats">
+            <span className="stat"><Heart size={16} /> 32</span>
+            <span className="stat"><MessageCircle size={16} /> 8 comments</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const AiAssistantDemo = () => {
+  return (
+    <div style={{ width: '100%', height: '100%', overflow: 'hidden' }}>
+      <iframe
+        src="https://cdn.botpress.cloud/webchat/v3.3/shareable.html?configUrl=https://files.bpcontent.cloud/2025/12/01/19/20251201195515-IOOOW523.json"
+        style={{ width: '100%', height: '100%', border: 'none' }}
+        title="OpenEars AI Assistant"
+      ></iframe>
+    </div>
+  );
 };
 
 export default Demo;
